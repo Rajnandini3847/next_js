@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { Heart, MessageCircle, Share2, MoreHorizontal } from 'lucide-react';
+import { Heart, MessageCircle, Share2, MoreHorizontal, X, Minus, Maximize2 } from 'lucide-react';
 
 const PortfolioPost = () => {
   const [isMaximized, setIsMaximized] = useState(false);
@@ -26,6 +26,55 @@ const PortfolioPost = () => {
     setIsLiked(!isLiked);
     setLikes(isLiked ? likes - 1 : likes + 1);
   };
+
+  const detailedCode = `
+// Advanced Developer Profile Management System
+import { DeveloperSkills, ProjectManagement } from '@/core/development';
+
+class RajnandiniFrontendProfile extends DeveloperSkills {
+  constructor() {
+    super();
+    this.name = "Rajnandini Tiwari";
+    this.role = "Senior Frontend Engineer";
+    this.expertise = {
+      frontend: ['React', 'Next.js', 'TypeScript'],
+      backend: ['Node.js', 'Python'],
+      devOps: ['Docker', 'AWS', 'CI/CD']
+    };
+  }
+
+  async getCurrentProjects() {
+    return [
+      {
+        name: "Enterprise Dashboard",
+        technologies: ['React', 'TypeScript', 'GraphQL'],
+        status: "In Progress",
+        complexity: 9.5
+      },
+      {
+        name: "Open Source Contribution",
+        repository: "github.com/itsrajnandini/dev-tools",
+        focus: "Performance Optimization"
+      }
+    ];
+  }
+
+  calculateProfessionalGrowth() {
+    const skillMatrix = {
+      technicalSkills: 0.85,
+      softSkills: 0.75,
+      openSourceContributions: 0.65
+    };
+
+    return {
+      overallGrowthIndex: this.computeGrowthMetrics(skillMatrix),
+      recommendedLearningPath: this.suggestSkillUpgrade()
+    };
+  }
+}
+
+export default new RajnandiniFrontendProfile();
+`;
 
   return (
     <div className="min-h-screen bg-black/80 flex items-center justify-center p-4">
@@ -75,34 +124,78 @@ const PortfolioPost = () => {
                 ${isMaximized ? 'fixed inset-0 z-50 flex items-center justify-center p-10' : ''}
               `}
             >
-              <div className="bg-zinc-800 px-4 py-2 flex items-center justify-between">
-                <div className="flex space-x-2">
-                  <button 
-                    onClick={handleClose} 
-                    className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 focus:outline-none"
-                    aria-label="Close"
-                  ></button>
-                  <button 
-                    onClick={handleMinimize} 
-                    className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 focus:outline-none"
-                    aria-label="Minimize"
-                  ></button>
-                  <button 
-                    onClick={handleMaximize} 
-                    className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 focus:outline-none"
-                    aria-label="Maximize"
-                  ></button>
+              {isMaximized ? (
+                <div className="w-full max-w-4xl bg-[#1A1A1A] rounded-xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
+                  <div className="bg-[#252526] px-4 py-3 flex items-center justify-between">
+                    <div className="flex items-center space-x-4">
+                      <div className="flex space-x-2">
+                        <button 
+                          onClick={handleClose} 
+                          className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 focus:outline-none flex items-center justify-center group"
+                          aria-label="Close"
+                        >
+                          <X size={10} className="text-black opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </button>
+                        <button 
+                          onClick={handleMinimize} 
+                          className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 focus:outline-none flex items-center justify-center group"
+                          aria-label="Minimize"
+                        >
+                          <Minus size={10} className="text-black opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </button>
+                        <button 
+                          className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 focus:outline-none flex items-center justify-center group"
+                          aria-label="Maximize"
+                        >
+                          <Maximize2 size={10} className="text-black opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </button>
+                      </div>
+                      <span className="text-sm text-gray-400">profile.ts</span>
+                    </div>
+                    <div className="flex items-center space-x-4 text-gray-400">
+                      <span>UTF-8</span>
+                      <span>TypeScript React</span>
+                      <span>Ln 24, Col 36</span>
+                    </div>
+                  </div>
+                  <div className="flex flex-grow overflow-auto scrollbar-hide">
+                    {/* Line Numbers */}
+                    <div className="bg-[#1E1E1E] text-gray-500 text-right p-4 pr-2 select-none overflow-y-scroll">
+                      {detailedCode.split('\n').map((_, index) => (
+                        <div key={index} className="text-xs">{index + 1}</div>
+                      ))}
+                    </div>
+                    {/* Code Content */}
+                    <pre className="overflow-y-scroll p-4 text-sm text-gray-300 font-mono bg-[#1E1E1E] w-full">
+                      <code>{detailedCode}</code>
+                    </pre>
+                  </div>
                 </div>
-                <span className="text-sm text-gray-400">script.js</span>
-              </div>
-              <div 
-                className={`
-                  p-4 font-mono text-sm text-gray-300 
-                  ${isMaximized ? 'max-w-4xl mx-auto' : ''}
-                `}
-              >
-                <pre className="whitespace-pre-line">
-                  {`const developer = {
+              ) : (
+                <>
+                  <div className="bg-zinc-800 px-4 py-2 flex items-center justify-between">
+                    <div className="flex space-x-2">
+                      <button 
+                        onClick={handleClose} 
+                        className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 focus:outline-none"
+                        aria-label="Close"
+                      ></button>
+                      <button 
+                        onClick={handleMinimize} 
+                        className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 focus:outline-none"
+                        aria-label="Minimize"
+                      ></button>
+                      <button 
+                        onClick={handleMaximize} 
+                        className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 focus:outline-none"
+                        aria-label="Maximize"
+                      ></button>
+                    </div>
+                    <span className="text-sm text-gray-400">script.js</span>
+                  </div>
+                  <div className="p-4 font-mono text-sm text-gray-300">
+                    <pre className="whitespace-pre-line">
+                      {`const developer = {
   name: "Rajnandini Tiwari",
   role: "Frontend Developer",
   skills: [
@@ -118,8 +211,10 @@ const PortfolioPost = () => {
     }
   }
 }`}
-                </pre>
-              </div>
+                    </pre>
+                  </div>
+                </>
+              )}
             </div>
           )}
         </div>
