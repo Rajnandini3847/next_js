@@ -196,21 +196,22 @@ export default new RajnandiniFrontendProfile();
                   <div className="p-4 font-mono text-sm text-gray-300">
                     <pre className="whitespace-pre-line">
                       {`const developer = {
-  name: "Rajnandini Tiwari",
-  role: "Frontend Developer",
-  skills: [
-    "React",
-    "Next.js",
-    "Node.js",
-    "Python"
-  ],
-  isAvailable: true,
-  contact: () => {
-    return {
-      email: "itsrajnandini@dev.com"
-    }
-  }
-}`}
+                          name: "Rajnandini Tiwari",
+                          role: "Frontend Developer",
+                          skills: [
+                             "React",
+                             "Next.js",
+                             "Node.js",
+                             "Python"
+                          ],
+                          isAvailable: true,
+                          contact: () => {
+                            return {
+                              email: "itsrajnandini@dev.com"
+                            }
+                          }
+                        }`
+                      }
                     </pre>
                   </div>
                 </>
