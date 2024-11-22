@@ -15,9 +15,7 @@ const CodeSnippet = () => {
   };
 
   const handleMinimize = () => {
-    if (isMaximized) {
-      setIsMaximized(false);
-    }
+    setIsMaximized(false);
   };
 
   const detailedCode = `
@@ -64,8 +62,7 @@ class RajnandiniFrontendProfile extends DeveloperSkills {
   }
 }
 
-export default new RajnandiniFrontendProfile();
-`;
+export default new RajnandiniFrontendProfile();`;
 
   if (!isCodeVisible) return null;
 
@@ -112,62 +109,64 @@ export default new RajnandiniFrontendProfile();
             </div>
           </div>
           <div className="flex flex-grow overflow-auto scrollbar-hide">
-            {/* Line Numbers */}
             <div className="bg-[#1E1E1E] text-gray-500 text-right p-4 pr-2 select-none overflow-y-scroll">
               {detailedCode.split('\n').map((_, index) => (
                 <div key={index} className="text-xs">{index + 1}</div>
               ))}
             </div>
-            {/* Code Content */}
             <pre className="overflow-y-scroll p-4 text-sm text-gray-300 font-mono bg-[#1E1E1E] w-full">
               <code>{detailedCode}</code>
             </pre>
           </div>
         </div>
       ) : (
-        <>
+        <div className="bg-zinc-800 rounded-xl overflow-hidden">
           <div className="bg-zinc-800 px-4 py-2 flex items-center justify-between">
             <div className="flex space-x-2">
               <button 
                 onClick={handleClose} 
-                className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 focus:outline-none"
+                className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 focus:outline-none flex items-center justify-center group"
                 aria-label="Close"
-              ></button>
+              >
+                <X size={10} className="text-black opacity-0 group-hover:opacity-100 transition-opacity" />
+              </button>
               <button 
-                onClick={handleMinimize} 
-                className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 focus:outline-none"
+                className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 focus:outline-none flex items-center justify-center group"
                 aria-label="Minimize"
-              ></button>
+              >
+                <Minus size={10} className="text-black opacity-0 group-hover:opacity-100 transition-opacity" />
+              </button>
               <button 
                 onClick={handleMaximize} 
-                className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 focus:outline-none"
+                className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 focus:outline-none flex items-center justify-center group"
                 aria-label="Maximize"
-              ></button>
+              >
+                <Maximize2 size={10} className="text-black opacity-0 group-hover:opacity-100 transition-opacity" />
+              </button>
             </div>
             <span className="text-sm text-gray-400">script.js</span>
           </div>
           <div className="p-4 font-mono text-sm text-gray-300">
-            <pre className="whitespace-pre-line">
+            <pre className="whitespace-pre-wrap">
               {`const developer = {
-                  name: "Rajnandini Tiwari",
-                  role: "Frontend Developer",
-                  skills: [
-                     "React",
-                     "Next.js",
-                     "Angular",
-                     "Firebase"
-                  ],
-                  isAvailable: true,
-                  contact: () => {
-                    return {
-                      email: "rajnandinitiwari3847@gmail.com"
-                    }
-                  }
-                }`
-              }
+    name: "Rajnandini Tiwari",
+    role: "Frontend Developer",
+    skills: [
+        "React",
+        "Next.js", 
+        "Angular", 
+        "Firebase"
+    ],
+    isAvailable: true,
+    contact: () => {
+        return {
+            email: "rajnandinitiwari3847@gmail.com"
+        }
+    }
+}`}
             </pre>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

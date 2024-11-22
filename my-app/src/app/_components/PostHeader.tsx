@@ -6,7 +6,7 @@ const PostHeader = () => {
     <div className="flex items-center p-4 border-b border-gray-800">
       <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
         <img
-          src="/api/placeholder/48/48"
+          src="/images/profile.jpg"
           alt="Profile"
           className="w-full h-full object-cover"
         />
